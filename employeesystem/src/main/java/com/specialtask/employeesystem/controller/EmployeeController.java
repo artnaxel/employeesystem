@@ -44,6 +44,8 @@ public class EmployeeController {
                 String name = data[0];
                 String email = data[1];
                 String phone = data[2];
+                Employee employee = new Employee(name, email, phone);
+                employeeService.saveEmployee((employee));
             }
             return ResponseEntity.ok("File uploaded successfully.");
         } catch (IOException e) {

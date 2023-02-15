@@ -1,9 +1,12 @@
 import './App.css';
-
+import * as React from 'react';
+import Employee from './components/Employee';
+import Appbar from './components/Appbar';
 function App() {
   return (
     <div className="App">
-      Employee system
+      <Appbar></Appbar>
+      <Employee></Employee>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Input, Paper } from '@mui/material';
+import { Button, Input, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function Employee(props) {
 
-    const[employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-  const paperStyle={padding:'50px 20px', width:600,margin:"20px auto"}
+  const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -15,7 +15,7 @@ export default function Employee(props) {
     const formData = new FormData();
     formData.append('file', selectedFile);
     fetch("http://localhost:8080/employee/upload-csv",
-    {
+      {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -39,10 +39,10 @@ export default function Employee(props) {
       })
       .catch(error => console.error(error));
   }, []);
-  
+
   return (
-    <div  style={{ display: 'flex', flexDirection: 'column', margin: '120px 120px', textAlign: "center"}}>
-        <Input
+    <div style={{ display: 'flex', flexDirection: 'column', margin: '120px 120px', textAlign: "center" }}>
+      <Input
         type="file"
         id="fileInput"
         onChange={handleFileInput}
@@ -57,16 +57,26 @@ export default function Employee(props) {
       >
         Upload
       </Button>
-      <h1>Employees</h1>
-      <Paper elevation={3} style={paperStyle}>
-        {employees.map(employee=>(
-            <Paper elevation={6} style={{margin:"10px", padding: "15px", textAlign:"left"}} key={employee.id}>
-                Name:{employee.name}
-                Email:{employee.email}
-                Phone:{employee.phone}
-            </Paper>
-        ))   } 
-            </Paper>
+      <TableContainer component={Paper} elevation={3} style={paperStyle}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Phone number</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {employees.map(employee => (
+              <TableRow key={employee.id}>
+                <TableCell>{employee.name}</TableCell>
+                <TableCell>{employee.email}</TableCell>
+                <TableCell>{employee.phone}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

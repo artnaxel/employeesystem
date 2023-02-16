@@ -12,3 +12,4 @@ Before trying to start application make sure that **Java 17**, **npm** and **mav
 5. To see all the employees, that have been uploaded, **reload** the page.
 
 ![image](https://user-images.githubusercontent.com/89353862/219399628-bc747048-1711-4992-90f6-90102593b8b1.png)
+NOTE: don't forget to install all dependecies `npm install`, `npm build` since I am using ***Material-ui*** packages.
